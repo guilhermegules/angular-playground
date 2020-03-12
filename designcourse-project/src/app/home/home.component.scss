@@ -1,7 +1,9 @@
+@import "home.component__variables";
+
 span {
   font-weight: bold;
   background-color: lightgray;
-  padding: .3em .8em;
+  padding: 0.3em 0.8em;
   cursor: pointer;
   user-select: none;
 }
@@ -11,14 +13,14 @@ span {
   border: 1px solid lightgray;
   margin-bottom: 1em;
 
-  input{ 
+  input {
     padding: 1em;
     margin-bottom: 2em;
   }
 }
 
 .active {
-  background-color: #85de40;
+  background-color: $active-color;
   border: 2px solid black;
 }
 
