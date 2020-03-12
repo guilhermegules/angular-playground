@@ -1,0 +1,52 @@
+@import 'list.component__variables';
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+
+  li {
+    background-color: $list-background;
+    padding: 1em;
+    margin-right: 10px;
+    width: 20%;
+    height: 200px;
+    margin-bottom: 1em;
+    display: flex;
+    flex-direction: column;
+
+    p {
+      margin: 0;
+    }
+
+    p.name {
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    p.country {
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      flex-grow: 1;
+    }
+
+    p.state {
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      flex-grow: 1;
+    }
+
+    p.city {
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      flex-grow: 1;
+    }
+  }
+}
+
+.site {
+  text-decoration: none;
+  color: $link-color;
+}
