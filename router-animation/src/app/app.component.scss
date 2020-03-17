@@ -1,0 +1,19 @@
+.navbar {
+  background-color: #ccffaa;
+  height: 5em;
+  .navbar-menu {
+    display: flex;
+    align-items: center;
+    a {
+      text-decoration: none;
+      color: #111;
+      margin: 1em;
+      font-size: 1.3em;
+      transition: 0.5s;
+      &:hover {
+        transition: 1s;
+        color: green;
+      }
+    }
+  }
+}

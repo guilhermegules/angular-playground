@@ -1,0 +1,11 @@
+<nav class="navbar" role="navigation">
+  <div class="navbar-menu">
+    <a routerLink="/left">Left</a>
+    <a routerLink="/about">About</a>
+    <a routerLink="/right">Right</a>
+  </div>
+</nav>
+
+<main [@routeAnimations]="prepareRoute(outlet)">
+  <router-outlet #outlet="outlet"></router-outlet>
+</main>
