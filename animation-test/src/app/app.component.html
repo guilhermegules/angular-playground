@@ -1,0 +1,14 @@
+<app-open-close></app-open-close>
+<div class="container">
+  <div class="button-container">
+    <button (click)="changeState('state1')" class="btn-primary">
+      Change to state 1
+    </button>
+    <button (click)="changeState('state2')" class="btn-primary">
+      Change to state 2
+    </button>
+  </div>
+  <div class="square">
+    <app-square-animated [currentState]="state"></app-square-animated>
+  </div>
+</div>
