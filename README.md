@@ -1,3 +1,3 @@
-# Angular_Playground
+# Angular Playground
 
 Angular training and fun repository
