@@ -1,14 +1,14 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "Server for application",
   "main": "index.js",
   "scripts": {
     "start": "nodemon dist/index",
     "build": "webpack --config webpack.config.ts",
     "dev": "ts-node-dev --respawn ./src/index.ts"
   },
-  "keywords": [],
+  "keywords": ["NodeJs", "TypeScript", "Webpack", "Express"],
   "author": "Guilherme Gules Moreira",
   "license": "ISC",
   "dependencies": {
