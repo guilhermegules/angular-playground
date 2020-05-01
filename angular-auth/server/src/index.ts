@@ -1,3 +1,5 @@
+import { notFoundHandler } from "./middleware/notFound.middleware";
+import { errorHandler } from "./middleware/error.middleware";
 import * as dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
@@ -18,6 +20,8 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 app.use("/items", itemsRouter);
+app.use(errorHandler);
+app.use(notFoundHandler);
 
 const server = app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
