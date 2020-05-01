@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon dist/index",
     "build": "webpack --config webpack.config.ts",
-    "dev": "ts-node-dev --respawn ./src/server.ts"
+    "dev": "ts-node-dev --respawn ./src/index.ts"
   },
   "keywords": [],
   "author": "Guilherme Gules Moreira",
