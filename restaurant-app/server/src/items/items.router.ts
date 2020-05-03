@@ -1,13 +1,12 @@
 import express, { Request, Response } from "express";
 import * as ItemService from "./items.service";
 import { Item } from "./item.interface";
-import { Items } from "./items.interface";
 
 export const itemsRouter = express.Router();
 
 itemsRouter.get("/", async (req: Request, res: Response) => {
   try {
-    const items: Items = await ItemService.findAll();
+    const items: Item[] = await ItemService.findAll();
     res.status(200).send(items);
   } catch (error) {
     res.status(404).send(error.message);
@@ -15,9 +14,8 @@ itemsRouter.get("/", async (req: Request, res: Response) => {
 });
 
 itemsRouter.get("/:id", async (req: Request, res: Response) => {
-  const id: number = parseInt(req.params.id, 10);
-
   try {
+    const id: number = parseInt(req.params.id, 10);
     const item: Item = await ItemService.find(id);
     res.status(200).send(item);
   } catch (error) {
