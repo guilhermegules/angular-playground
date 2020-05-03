@@ -36,7 +36,7 @@ export const findAll = async (): Promise<Item[]> => {
 };
 
 export const find = async (id: number): Promise<Item> => {
-  const item = items.find(item => item.id === id);
+  const item = items.find((item) => item.id === id);
   if (item) {
     return item;
   }
@@ -44,30 +44,23 @@ export const find = async (id: number): Promise<Item> => {
 };
 
 export const create = async (newItem: Item): Promise<void> => {
-  const id = new Date().valueOf();
-
-  items[id] = {
-    ...newItem,
-    id,
-  };
+  items.push(newItem);
 };
 
 export const update = async (updatedItem: Item): Promise<void> => {
-  if (items[updatedItem.id]) {
+  const item = items.find((item) => item.id === updatedItem.id);
+  if (item) {
     items[updatedItem.id] = updatedItem;
     return;
   }
-
   throw new Error("No record found to update");
 };
 
 export const remover = async (id: number): Promise<void> => {
   const record: Item = items[id];
-
   if (record) {
     delete items[id];
     return;
   }
-
   throw new Error("No record found to delete");
 };
