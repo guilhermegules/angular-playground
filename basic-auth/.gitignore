@@ -44,9 +44,3 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
-
-src/app/_helpers 
-src/app/_models
-src/app/_services
-src/app/home
-src/app/login
