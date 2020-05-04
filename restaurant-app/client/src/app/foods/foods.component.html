@@ -1,5 +1,8 @@
-<ng-template *ngFor="let item of items">
-  <div>
-    <p>{{ item.name }}</p>
+<section class="container">
+  <div class="item" *ngFor="let item of items">
+    <img class="item-image" src="{{ item.image }}" alt="{{ item.description }}" />
+    <p class="item-name">{{ item.name }}</p>
+    <p class="item-info">{{ item.price }}</p>
+    <p class="item-info">{{ item.description }}</p>
   </div>
-</ng-template>
+</section>
