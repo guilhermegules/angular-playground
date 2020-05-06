@@ -2,6 +2,8 @@
 
 ### Some useful commands on Angular CLI
 
+#### For more information [Angular Cli docs](https://cli.angular.io/)
+
 Installing Angular CLI `npm install -g @angular/cli`
 Creating project `ng new <project-name>`;
 Running project `ng serve`;
