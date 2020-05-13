@@ -1,0 +1,102 @@
+<h2>Course Info</h2>
+<hr />
+<form #courseForm="ngForm" *ngIf="course">
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Name:</label>
+    <div class="col-sm-10">
+      <input
+        type="text"
+        [(ngModel)]="course.name"
+        name="name"
+        #courseName="ngModel"
+        [ngClass]="{ 'is-invalid': courseName.invalid }"
+        class="form-control"
+        required
+      />
+      <div class="invalid-feedback">
+        <span>Course name is required</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Price:</label>
+    <div class="col-sm-10">
+      <input
+        [(ngModel)]="course.price"
+        required
+        name="price"
+        #coursePrice="ngModel"
+        type="number"
+        [ngClass]="{ 'is-invalid': coursePrice.invalid }"
+        class="form-control"
+      />
+
+      <div class="invalid-feedback">
+        <span>Course price is required</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Rating:</label>
+    <div class="col-sm-10">
+      <input
+        type="number"
+        [(ngModel)]="course.rating"
+        #courseRating="ngModel"
+        name="rating"
+        [ngClass]="{ 'is-invalid': courseRating.invalid }"
+        class="form-control"
+        required
+      />
+      <div class="invalid-feedback">
+        <span>Course rating is required</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Description:</label>
+    <div class="col-sm-10">
+      <textarea
+        [(ngModel)]="course.description"
+        #courseDescription="ngModel"
+        name="description"
+        [ngClass]="{ 'is-invalid': courseDescription.invalid }"
+        class="form-control"
+        required
+      ></textarea>
+      <div class="invalid-feedback">
+        <span>Course description is required</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Release Date:</label>
+    <div class="col-sm-10">
+      <input
+        type="text"
+        [(ngModel)]="course.releaseDate"
+        #courseRelease="ngModel"
+        name="release"
+        [ngClass]="{ 'is-invalid': courseRelease.invalid }"
+        class="form-control"
+        required
+      />
+      <div class="invalid-feedback">
+        <span>Course Release is required</span>
+      </div>
+    </div>
+  </div>
+
+  <button
+    class="btn btn-primary mr-2"
+    (click)="save()"
+    [disabled]="courseForm.invalid"
+  >
+    Save
+  </button>
+  <button class="btn btn-secondary" [routerLink]="['/courses']">Back</button>
+</form>
