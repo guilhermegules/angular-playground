@@ -47,3 +47,6 @@ End-to-end `ng e2e`.
 - `ng build --prod --env=prod`;
 - `ng build --prod`,
 
+### Creating project with npx:
+- `npx -p @angular/cli ng new <project_name>`
+
