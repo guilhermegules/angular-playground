@@ -50,3 +50,6 @@ End-to-end `ng e2e`.
 ### Creating project with npx:
 - `npx -p @angular/cli ng new <project_name>`
 
+### Creating routing module:
+- `ng g m <module_name> --routing`
+
