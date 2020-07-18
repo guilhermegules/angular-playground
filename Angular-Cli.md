@@ -54,4 +54,4 @@ End-to-end `ng e2e`.
 - `ng g m <module_name> --routing`
 
 ### Disable analytics
-ng analytics off
+- `ng analytics off`
