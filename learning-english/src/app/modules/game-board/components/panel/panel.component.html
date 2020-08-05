@@ -1,0 +1,35 @@
+<app-wrapper>
+  <div class="jumbotron">
+    <div class="row">
+      <div class="col-sm-6">
+        <app-progress [progress]="progress"></app-progress>
+      </div>
+      <div class="col-sm-6 d-flex justify-content-end">
+        <app-attempts [attemptsNumber]="remainingLifes"></app-attempts>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <h6 class="bold-title">{{ instruction }}</h6>
+        <p>{{ currentQuestion.english }}</p>
+        <div class="form-group">
+          <textarea
+            (input)="onUpdateAnswer($event.target.value)"
+            [value]="currentAnswer"
+            class="form-control"
+            rows="3"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col d-flex justify-content-end">
+        <button (click)="validateAnswer()" class="btn btn-primary">
+          Validar Resposta
+        </button>
+      </div>
+    </div>
+  </div>
+</app-wrapper>

@@ -1,0 +1,11 @@
+:host {
+  $progress-success: #99ce28;
+  $progress-background: #EEF8da;
+  .progress {
+    background: $progress-background;
+    border: 1px solid $progress-success;
+    &-bar {
+      background: $progress-success;
+    }
+  }
+}
