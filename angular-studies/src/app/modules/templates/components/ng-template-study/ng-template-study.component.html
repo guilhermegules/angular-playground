@@ -1,0 +1,24 @@
+<h1>ng-template & TemplateRef</h1>
+
+<h2>Examples of Template using ng-template and ng-container</h2>
+
+<ng-container [ngTemplateOutlet]="exampleTemplate"></ng-container>
+
+<ng-template #exampleTemplate>
+  <p>Say Hello</p>
+</ng-template>
+
+<h2>Examples of Template using ng-template with ngIf</h2>
+
+<label> <input [(ngModel)]="selected" type="checkbox" />Select Me </label>
+
+<ng-template [ngIf]="selected">
+  <div>
+    <p>You are selected</p>
+  </div>
+</ng-template>
+
+<ng-template #namesTemplate>
+  <h2>Examples of Template using ng-template with ViewChild</h2>
+  <p *ngFor="let name of names">{{ name }}</p>
+</ng-template>
