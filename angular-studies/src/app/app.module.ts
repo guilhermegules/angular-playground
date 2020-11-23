@@ -1,4 +1,4 @@
-import { NavigationMenuComponent } from './navigation/navigation-menu/navigation-menu.component';
+import { NavigationModule } from './navigation/navigation.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -8,13 +8,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NavigationMenuComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    NavigationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
