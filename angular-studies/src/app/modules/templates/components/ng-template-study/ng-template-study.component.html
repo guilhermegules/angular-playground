@@ -1,24 +1,32 @@
-<h1>ng-template & TemplateRef</h1>
+<mat-card>
+  <mat-card-title><h1>ng-template & TemplateRef</h1></mat-card-title>
 
-<h2>Examples of Template using ng-template and ng-container</h2>
+  <mat-card-subtitle><h2>Examples of Template using ng-template and ng-container</h2></mat-card-subtitle>
 
-<ng-container [ngTemplateOutlet]="exampleTemplate"></ng-container>
+  <mat-card-content>
+    <ng-container [ngTemplateOutlet]="exampleTemplate"></ng-container>
 
-<ng-template #exampleTemplate>
-  <p>Say Hello</p>
-</ng-template>
+    <ng-template #exampleTemplate>
+      <p>Say Hello</p>
+    </ng-template>
+  </mat-card-content>
 
-<h2>Examples of Template using ng-template with ngIf</h2>
+  <mat-card-subtitle><h2>Examples of Template using ng-template with ngIf</h2></mat-card-subtitle>
 
-<label> <input [(ngModel)]="selected" type="checkbox" />Select Me </label>
+  <mat-card-content>
+    <label> <input [(ngModel)]="selected" type="checkbox" />Select Me </label>
 
-<ng-template [ngIf]="selected">
-  <div>
-    <p>You are selected</p>
-  </div>
-</ng-template>
+    <ng-template [ngIf]="selected">
+      <div>
+        <p>You are selected</p>
+      </div>
+    </ng-template>
+  </mat-card-content>
 
-<ng-template #namesTemplate>
-  <h2>Examples of Template using ng-template with ViewChild</h2>
-  <p *ngFor="let name of names">{{ name }}</p>
-</ng-template>
+  <ng-template #namesTemplate>
+    <mat-card-subtitle> <h2>Examples of Template using ng-template with ViewChild</h2></mat-card-subtitle>
+    <mat-card-content>
+      <p *ngFor="let name of names">{{ name }}</p>
+    </mat-card-content>
+  </ng-template>
+</mat-card>

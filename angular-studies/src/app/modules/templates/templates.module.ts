@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
 
 import { TemplatesRoutingModule } from './templates-routing.module';
 import { NgTemplateStudyComponent } from './components/ng-template-study/ng-template-study.component';
 import { NgTemplateStudyContainerComponent } from './containers/ng-template-study-container/ng-template-study-container.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 
 
 @NgModule({
@@ -13,7 +13,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     TemplatesRoutingModule,
-    FormsModule
+    FormsModule,
+    MatCardModule
   ]
 })
 export class TemplatesModule { }
