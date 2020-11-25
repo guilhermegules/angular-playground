@@ -3,9 +3,18 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'templates',
-    loadChildren: () => import('./modules/templates/templates.module').then((m) => m.TemplatesModule),
-  },
+    path: '',
+    children: [
+      {
+        path: 'templates',
+        loadChildren: () => import('./modules/templates/templates.module').then((m) => m.TemplatesModule),
+      },
+      {
+        path: 'form-validation',
+        loadChildren: () => import('./modules/form-validation/form-validation.module').then(m => m.FormValidationModule),
+      }
+    ]
+  }
 ];
 
 @NgModule({
