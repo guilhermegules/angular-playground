@@ -1,18 +1,30 @@
 <form [formGroup]="loginForm">
   <div>
-    <mat-form-field appearance="fill">
+    <mat-form-field floatLabel="never">
       <mat-label>E-mail</mat-label>
       <input matInput type="text" placeholder="Type your best email" formControlName="email" />
+      <mat-error *ngIf="loginForm.get('email').hasError('required')" MatError>Incorrect E-mail</mat-error>
     </mat-form-field>
+  </div>
 
-    <mat-form-field appearance="fill">
+  <div>
+    <mat-form-field floatLabel="never">
       <mat-label>Password</mat-label>
       <input matInput type="text" placeholder="Type your secret pass" formControlName="password" />
+      <mat-error MatError>Incorrect Password</mat-error>
     </mat-form-field>
+  </div>
 
-    <mat-form-field appearance="fill">
+  <div>
+    <mat-form-field floatLabel="never">
       <mat-label>Age</mat-label>
       <input matInput type="text" placeholder="Type your age" formControlName="age" />
+      <mat-error MatError>Incorrect Age</mat-error>
     </mat-form-field>
   </div>
 </form>
+
+<div class="info">
+  <pre>{{ loginForm.value | json }}</pre>
+  <pre>Form is valid: {{ loginForm.valid | json }}</pre>
+</div>

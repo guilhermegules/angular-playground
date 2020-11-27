@@ -13,6 +13,9 @@ export class ReactiveLoginFormComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.initForm();
+
+    console.log(this.loginForm.valid)
   }
 
   initForm(): void {
