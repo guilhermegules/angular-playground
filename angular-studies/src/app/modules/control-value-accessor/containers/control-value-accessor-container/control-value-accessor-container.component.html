@@ -1,0 +1,32 @@
+<h2>Hello to ControlValueAccessors</h2>
+
+<form [formGroup]="form">
+  <div class="form-group">
+    <label> Galaxy: </label>
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let galaxy of galaxies$ | async" [value]="galaxy">
+        {{ galaxy }}
+      </mat-option>
+    </mat-autocomplete>
+
+    <input
+      type="text"
+      placeholder="Pick one"
+      aria-label="Number"
+      matInput
+      formControlName="galaxy"
+      [matAutocomplete]="auto"
+    />
+  </div>
+  <div class="form-group">
+    <label> Name: </label>
+    <input type="text" class="form-control" formControlName="name" />
+  </div>
+  <div class="form-group">
+    <label> Rating: </label>
+    <app-star-rater formControlName="rating"></app-star-rater>
+  </div>
+  <div class="form-group">
+    <button type="submit">Submit</button>
+  </div>
+</form>

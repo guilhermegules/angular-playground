@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TemplateDrivenFormComponent } from './template-driven-form.component';
+import { StarRaterComponent } from './star-rater.component';
 
-describe('TemplateDrivenFormComponent', () => {
-  let component: TemplateDrivenFormComponent;
-  let fixture: ComponentFixture<TemplateDrivenFormComponent>;
+describe('StarRaterComponent', () => {
+  let component: StarRaterComponent;
+  let fixture: ComponentFixture<StarRaterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TemplateDrivenFormComponent ]
+      declarations: [ StarRaterComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TemplateDrivenFormComponent);
+    fixture = TestBed.createComponent(StarRaterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

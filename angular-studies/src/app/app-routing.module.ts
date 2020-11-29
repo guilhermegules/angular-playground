@@ -12,6 +12,10 @@ const routes: Routes = [
       {
         path: 'form-validation',
         loadChildren: () => import('./modules/form-validation/form-validation.module').then(m => m.FormValidationModule),
+      },
+      {
+        path: 'control-value-accessor',
+        loadChildren: () => import('./modules/control-value-accessor/control-value-accessor.module').then(m => m.ControlValueAccessorModule)
       }
     ]
   }
