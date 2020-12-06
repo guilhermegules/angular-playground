@@ -18,7 +18,7 @@ export class ControlValueAccessorContainerComponent implements OnInit {
   ngOnInit(): void {
     this.form = new FormGroup({
       rating: new FormControl({ value: null, disabled: true }),
-      name: new FormControl({ value: null, disabled: true }),
+      name: new FormControl({ value: null }),
       galaxy: new FormControl({ value: null, disabled: true }),
     });
 
