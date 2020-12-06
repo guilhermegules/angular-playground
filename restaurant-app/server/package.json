@@ -8,7 +8,12 @@
     "build": "webpack --config webpack.config.ts",
     "dev": "ts-node-dev --respawn ./src/index.ts"
   },
-  "keywords": ["NodeJs", "TypeScript", "Webpack", "Express"],
+  "keywords": [
+    "NodeJs",
+    "TypeScript",
+    "Webpack",
+    "Express"
+  ],
   "author": "Guilherme Gules Moreira",
   "license": "ISC",
   "dependencies": {
