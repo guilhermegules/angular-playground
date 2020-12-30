@@ -55,3 +55,7 @@ Ações do Change detection:
   - ApplicationRef.
 - Um pedaço de código assíncrono executado fora de uma Zone:
   - Não dispara change detection.
+
+### ChangeDetectionStrategy.OnPush
+
+Essa estratégia faz com que o Change Detection somente seja acionado quando um Input for modificado
