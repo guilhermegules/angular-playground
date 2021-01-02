@@ -1,5 +1,5 @@
 import { ITodos } from './../../models/todos.model';
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-content-c-child',
@@ -9,5 +9,11 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 })
 export class ContentCChildComponent {
   @Input()
-  todo: ITodos
+  counter: number;
+
+  @Output()
+  increment: EventEmitter<number> = new EventEmitter();
+
+  @Output()
+  decrement: EventEmitter<number> = new EventEmitter();
 }
