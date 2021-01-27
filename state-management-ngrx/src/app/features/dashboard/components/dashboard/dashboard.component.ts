@@ -1,12 +1,19 @@
 import { Component } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { AppState } from 'src/app/state/app.reducer';
+import { Observable } from 'rxjs';
 
-import { UserContextService } from '../../../../shared/services/user-context.service';
+import * as fromAppSelectors from '../../../../state/app.selectors';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent {
-  constructor(public userContext: UserContextService) { }
+  name$: Observable<string>;
+
+  constructor(private store: Store<AppState>) {
+    this.name$ = this.store.pipe(select(fromAppSelectors.selectUserName));
+  }
 }

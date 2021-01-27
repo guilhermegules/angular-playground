@@ -1,27 +1,34 @@
 import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { AppState } from 'src/app/state/app.reducer';
 
 import { Todo } from '../../../../shared/models/todo.model';
-import { ListService } from '../../services/list.service';
+import * as fromListActions from '../../state/list.actions';
+import * as fromListSelectors from '../../state/list.selectors';
 
 @Component({
   selector: 'app-last-todos',
   templateUrl: './last-todos.component.html',
-  styleUrls: ['./last-todos.component.scss']
+  styleUrls: ['./last-todos.component.scss'],
 })
 export class LastTodosComponent implements OnInit {
-  list: Todo[];
+  list$: Observable<Todo[]>;
 
-  constructor(private listService: ListService) {
-  }
+  loading$: Observable<boolean>;
+
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit() {
-    this.listService.getList(0);
+    this.store.dispatch(fromListActions.loadListFromLastTodos());
 
-    this.listService.list$
-      .subscribe(list => this.list = list.slice(0, 10));
+    this.list$ = this.store.pipe(select(fromListSelectors.selectListEntities));
   }
 
-  markAsDone(id: number) {
-    this.listService.toggleDone(id);
+  // @Todo implement markAsDone on state
+  // eslint-disable-next-line class-methods-use-this
+  markAsDone(id: number): void {
+    //  this.listService.toggleDone(id);
+    console.log('TODO');
   }
 }

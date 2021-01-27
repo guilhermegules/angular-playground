@@ -14,7 +14,7 @@ export class AppEffects {
       mergeMap(({ name, email }) =>
         this.loginService.login(name, email).pipe(
           map(user => {
-            this.router.navigate(['dashboard']);
+            this.router.navigate(['d']);
             return fromAppActions.doLoginSuccess({ user });
           }),
           catchError(() => of(fromAppActions.doLoginFailure())),

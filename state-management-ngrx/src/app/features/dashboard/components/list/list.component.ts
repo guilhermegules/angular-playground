@@ -1,21 +1,38 @@
 import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { combineLatest, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Todo } from 'src/app/shared/models/todo.model';
-import { TodosService } from 'src/app/shared/services/todos.service';
+
+import { AppState } from 'src/app/state/app.reducer';
 import { ListService } from '../../services/list.service';
+import * as fromListSelectors from '../../state/list.selectors';
+import * as fromListActions from '../../state/list.actions';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  styleUrls: ['./list.component.scss'],
 })
 export class ListComponent implements OnInit {
-  list: Todo[];
+  list$: Observable<Todo[]>;
 
-  constructor(private listService: ListService) { }
+  loading$: Observable<boolean>;
+
+  loadingMore$: Observable<boolean>;
+
+  shouldShowLoadingIndicator$: Observable<boolean>;
+
+  constructor(private listService: ListService, private store: Store<AppState>) {}
 
   ngOnInit() {
-    this.listService.list$
-      .subscribe(list => this.list = list);
+    this.list$ = this.store.pipe(select(fromListSelectors.selectListEntities));
+    this.loading$ = this.store.pipe(select(fromListSelectors.selectListLoading));
+    this.loadingMore$ = this.store.pipe(select(fromListSelectors.selectListLoadingMore));
+
+    this.shouldShowLoadingIndicator$ = combineLatest([this.loading$, this.loadingMore$]).pipe(
+      map(([loading, loadingMore]) => loading || loadingMore),
+    );
   }
 
   markAsDone(id: number) {
@@ -27,8 +44,6 @@ export class ListComponent implements OnInit {
   }
 
   loadMore() {
-    this.listService.page++;
-    this.listService.getList(this.listService.page);
+    this.store.dispatch(fromListActions.loadMore());
   }
-
 }

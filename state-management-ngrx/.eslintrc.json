@@ -14,6 +14,7 @@
     "no-alert": "warn",
     "no-console": "warn",
     "import/no-unresolved": "off",
+    "import/extensions": "off",
     "no-useless-constructor": "off",
     "no-empty-function": "off",
     "import/prefer-default-export": "off",
@@ -22,6 +23,7 @@
     "implicit-arrow-linebreak": ["warn", "beside"],
     "arrow-parens": "off",
     "function-paren-newline": "off",
+    "object-curly-newline": "off",
     "indent": ["error", 2]
   }
 }

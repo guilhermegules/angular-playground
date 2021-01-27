@@ -8,7 +8,6 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginModule } from './features/login/login.module';
-// eslint-disable-next-line import/extensions
 import { environment } from '../environments/environment';
 import { reducer } from './state/app.reducer';
 

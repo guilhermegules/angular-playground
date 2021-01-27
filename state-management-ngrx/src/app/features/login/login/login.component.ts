@@ -1,18 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { LoginService } from 'src/app/shared/services/login.service';
-import { UserContextService } from 'src/app/shared/services/user-context.service';
+
 import { AppState } from 'src/app/state/app.reducer';
 import * as fromAppActions from '../../../state/app.actions';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent implements OnInit {
   public form: FormGroup;
 
   constructor(private fb: FormBuilder, private store: Store<AppState>) {}
@@ -27,8 +25,8 @@ export class LoginComponent implements OnInit{
 
   private initForm() {
     this.form = this.fb.group({
-        name: [null],
-        email: [null],
-    })
+      name: [null],
+      email: [null],
+    });
   }
 }

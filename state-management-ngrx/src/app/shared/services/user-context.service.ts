@@ -1,11 +1,11 @@
+/* eslint-disable no-underscore-dangle */
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserContextService {
-
   private _user: User;
 
   get user(): User {

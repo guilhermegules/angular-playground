@@ -1,21 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Todo } from 'src/app/shared/models/todo.model';
-import { ListService } from '../../services/list.service';
+import { select, Store } from '@ngrx/store';
+import { Observable, Subject } from 'rxjs';
+import { pairwise, takeUntil } from 'rxjs/operators';
 
+import { AppState } from 'src/app/state/app.reducer';
+import * as fromListActions from '../../state/list.actions';
+import * as fromListSelectors from '../../state/list.selectors';
 @Component({
   selector: 'app-create-todo',
   templateUrl: './create-todo.component.html',
-  styleUrls: ['./create-todo.component.scss']
+  styleUrls: ['./create-todo.component.scss'],
 })
-export class CreateTodoComponent {
+export class CreateTodoComponent implements OnInit, OnDestroy {
   titleControl = new FormControl('');
-  list: Todo[];
 
-  constructor(private listService: ListService) {
+  creating$: Observable<boolean>;
+
+  private componentDestroyed$ = new Subject();
+
+  constructor(private store: Store<AppState>) {}
+
+  ngOnInit(): void {
+    this.creating$ = this.store.pipe(select(fromListSelectors.selectListCreating));
+
+    this.creating$
+      // [pairwise] Puts the old value and the new value and emit it
+      .pipe(pairwise(), takeUntil(this.componentDestroyed$))
+      .subscribe(([oldCreating, creating]) => {
+        if (oldCreating && !creating) {
+          this.titleControl.setValue('');
+        }
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.componentDestroyed$.next();
+    this.componentDestroyed$.complete();
   }
 
   save() {
-    this.listService.create(this.titleControl.value);
+    this.store.dispatch(fromListActions.createTodo({ title: this.titleControl.value }));
   }
 }
