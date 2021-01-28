@@ -2,7 +2,7 @@
 
 <label>Mostrando os últimos 10 todos</label>
 
-<ng-template *ngIf="!(loading$ | async)">
+<ng-container *ngIf="!(loading$ | async)">
   <div *ngFor="let item of list$ | async" class="item-card" (click)="markAsDone(item.id)">
     <label>{{ item.createdAt | date: 'dd/MM/yyyy HH:mm' }}</label>
 
@@ -13,6 +13,6 @@
       <label for="checkbox"><span>Feito</span></label>
     </div>
   </div>
-</ng-template>
+</ng-container>
 
 <span *ngIf="loading$ | async">Carregando</span>

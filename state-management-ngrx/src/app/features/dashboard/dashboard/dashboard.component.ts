@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+
 import { select, Store } from '@ngrx/store';
-import { AppState } from 'src/app/state/app.reducer';
 import { Observable } from 'rxjs';
 
-import * as fromAppSelectors from '../../../../state/app.selectors';
+import { AppState } from 'src/app/state/app.reducer';
+import * as fromAppSelectors from '../../../state/app.selectors';
 
 @Component({
   selector: 'app-dashboard',

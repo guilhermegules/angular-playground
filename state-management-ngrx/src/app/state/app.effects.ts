@@ -4,7 +4,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { LoginService } from '../shared/services/login.service';
-import * as fromAppActions from '../state/app.actions';
+import * as fromAppActions from './app.actions';
 
 @Injectable()
 export class AppEffects {
@@ -14,7 +14,7 @@ export class AppEffects {
       mergeMap(({ name, email }) =>
         this.loginService.login(name, email).pipe(
           map(user => {
-            this.router.navigate(['d']);
+            this.router.navigate(['dashboard']);
             return fromAppActions.doLoginSuccess({ user });
           }),
           catchError(() => of(fromAppActions.doLoginFailure())),

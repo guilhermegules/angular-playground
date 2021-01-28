@@ -24,6 +24,10 @@
     "arrow-parens": "off",
     "function-paren-newline": "off",
     "object-curly-newline": "off",
-    "indent": ["error", 2]
+    "indent": ["error", 2],
+    "class-methods-use-this": "off",
+    "no-undef": "off",
+    "no-confusing-arrow": "off",
+    "no-param-reassign": "off"
   }
 }

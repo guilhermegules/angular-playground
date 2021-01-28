@@ -1,6 +1,6 @@
 <h3>Criar novo todo</h3>
 
-<input [formControl]="titleControl" />
+<input [formControl]="titleControl">
 
 <button *ngIf="!(creating$ | async)" class="primary" (click)="save()">Salvar</button>
 

@@ -1,33 +1,32 @@
 import { Injectable } from '@angular/core';
-import { createEffect, ofType, Actions } from '@ngrx/effects';
+
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap, withLatestFrom } from 'rxjs/operators';
+
 import { TodosService } from 'src/app/shared/services/todos.service';
 import { AppState } from 'src/app/state/app.reducer';
-
 import * as fromListActions from './list.actions';
 import * as fromListSelectors from './list.selectors';
 
 @Injectable()
 export class ListEffects {
-  public loadList$ = createEffect(() =>
+  loadList$ = createEffect(() =>
     this.actions$.pipe(
       ofType(
         fromListActions.loadListFromLastTodos,
         fromListActions.loadListFromList,
         fromListActions.loadMore,
       ),
-      // withLatestFrom combine the source Observable ^ with other observable we pass to him
       withLatestFrom(
         this.store.pipe(select(fromListSelectors.selectListEntities)),
         this.store.pipe(select(fromListSelectors.selectListPage)),
       ),
-      mergeMap(([action, entitiesData, page]) => {
+      mergeMap(([_, entitiesData, page]) => {
         if (page === 0 && entitiesData.length >= 10) {
           return of(fromListActions.notifyHydrated());
         }
-
         return this.todosService.getList(page).pipe(
           map(entities => fromListActions.loadListSuccess({ entities })),
           catchError(() => of(fromListActions.loadListFailure())),
@@ -36,7 +35,7 @@ export class ListEffects {
     ),
   );
 
-  public createTodo$ = createEffect(() =>
+  createTodo$ = createEffect(() =>
     this.actions$.pipe(
       ofType(fromListActions.createTodo),
       mergeMap(prop =>
@@ -48,7 +47,7 @@ export class ListEffects {
     ),
   );
 
-  public removeTodo$ = createEffect(() =>
+  removeTodo$ = createEffect(() =>
     this.actions$.pipe(
       ofType(fromListActions.removeTodo),
       mergeMap(({ id }) =>
@@ -62,7 +61,7 @@ export class ListEffects {
 
   constructor(
     private actions$: Actions,
-    private todosService: TodosService,
     private store: Store<AppState>,
+    private todosService: TodosService,
   ) {}
 }

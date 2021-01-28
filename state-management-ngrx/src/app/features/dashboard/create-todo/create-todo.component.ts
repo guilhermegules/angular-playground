@@ -1,12 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+
 import { select, Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { pairwise, takeUntil } from 'rxjs/operators';
 
 import { AppState } from 'src/app/state/app.reducer';
-import * as fromListActions from '../../state/list.actions';
-import * as fromListSelectors from '../../state/list.selectors';
+import * as fromListActions from '../state/list.actions';
+import * as fromListSelectors from '../state/list.selectors';
+
 @Component({
   selector: 'app-create-todo',
   templateUrl: './create-todo.component.html',
@@ -21,11 +23,10 @@ export class CreateTodoComponent implements OnInit, OnDestroy {
 
   constructor(private store: Store<AppState>) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.creating$ = this.store.pipe(select(fromListSelectors.selectListCreating));
 
     this.creating$
-      // [pairwise] Puts the old value and the new value and emit it
       .pipe(pairwise(), takeUntil(this.componentDestroyed$))
       .subscribe(([oldCreating, creating]) => {
         if (oldCreating && !creating) {
@@ -34,7 +35,7 @@ export class CreateTodoComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     this.componentDestroyed$.next();
     this.componentDestroyed$.complete();
   }

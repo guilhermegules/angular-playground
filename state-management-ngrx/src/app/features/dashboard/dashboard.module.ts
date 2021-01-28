@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
-import { CreateTodoComponent } from './components/create-todo/create-todo.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { LastTodosComponent } from './components/last-todos/last-todos.component';
-import { ListComponent } from './components/list/list.component';
-import { ListService } from './services/list.service';
-import { reducer } from './state/list.reducer';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { LastTodosComponent } from './last-todos/last-todos.component';
+import { CreateTodoComponent } from './create-todo/create-todo.component';
+import { ListComponent } from './list/list.component';
+import { listReducer } from './state/list.reducer';
 import { ListEffects } from './state/list.effects';
+import { ListItemComponent } from './list-item/list-item.component';
 
 @NgModule({
-  declarations: [CreateTodoComponent, DashboardComponent, LastTodosComponent, ListComponent],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     RouterModule.forChild([
       {
         path: '',
@@ -27,11 +27,15 @@ import { ListEffects } from './state/list.effects';
         component: ListComponent,
       },
     ]),
-    ReactiveFormsModule,
-    FormsModule,
-    // Creating dinamic feature for a respective module
-    StoreModule.forFeature('list', reducer),
+    StoreModule.forFeature('list', listReducer),
     EffectsModule.forFeature([ListEffects]),
+  ],
+  declarations: [
+    DashboardComponent,
+    LastTodosComponent,
+    CreateTodoComponent,
+    ListComponent,
+    ListItemComponent,
   ],
 })
 export class DashboardModule {}

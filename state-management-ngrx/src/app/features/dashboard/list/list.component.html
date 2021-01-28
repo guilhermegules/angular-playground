@@ -1,0 +1,18 @@
+<div class="container">
+  <h3>Todos os todos</h3>
+
+  <ng-container *ngIf="!(loading$ | async)">
+    <app-list-item
+      *ngFor="let item of list$ | async"
+      [item]="item"
+      (markAsDone)="markAsDone($event)"
+      (remove)="onDelete($event)"
+    ></app-list-item>
+
+    <button *ngIf="!(shouldShowLoadingIndicator$ | async)" class="primary" (click)="loadMore()">
+      Carregar mais
+    </button>
+  </ng-container>
+
+  <span *ngIf="shouldShowLoadingIndicator$ | async">Carregando</span>
+</div>

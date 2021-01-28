@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+
 import { select, Store } from '@ngrx/store';
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Todo } from 'src/app/shared/models/todo.model';
 
+import { Todo } from 'src/app/shared/models/todo.model';
 import { AppState } from 'src/app/state/app.reducer';
-import { ListService } from '../../services/list.service';
-import * as fromListSelectors from '../../state/list.selectors';
-import * as fromListActions from '../../state/list.actions';
+import * as fromListAction from '../state/list.actions';
+import * as fromListSelectors from '../state/list.selectors';
 
 @Component({
   selector: 'app-list',
@@ -23,9 +23,11 @@ export class ListComponent implements OnInit {
 
   shouldShowLoadingIndicator$: Observable<boolean>;
 
-  constructor(private listService: ListService, private store: Store<AppState>) {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit() {
+    this.store.dispatch(fromListAction.loadListFromList());
+
     this.list$ = this.store.pipe(select(fromListSelectors.selectListEntities));
     this.loading$ = this.store.pipe(select(fromListSelectors.selectListLoading));
     this.loadingMore$ = this.store.pipe(select(fromListSelectors.selectListLoadingMore));
@@ -35,15 +37,13 @@ export class ListComponent implements OnInit {
     );
   }
 
-  markAsDone(id: number) {
-    this.listService.toggleDone(id);
-  }
+  markAsDone(id: number) {}
 
   onDelete(id: number) {
-    this.listService.remove(id);
+    this.store.dispatch(fromListAction.removeTodo({ id }));
   }
 
   loadMore() {
-    this.store.dispatch(fromListActions.loadMore());
+    this.store.dispatch(fromListAction.loadMore());
   }
 }

@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { LoginComponent } from './features/login/login/login.component';
+import { LoginComponent } from './features/login/containers/login/login.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   {
     path: 'dashboard',
     loadChildren: () =>
-      import('../app/features/dashboard/dashboard.module').then(m => m.DashboardModule),
+      import('src/app/features/dashboard/dashboard.module').then(m => m.DashboardModule),
   },
 ];
 
