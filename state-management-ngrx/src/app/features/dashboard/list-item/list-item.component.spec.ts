@@ -42,6 +42,7 @@ describe('ListItemComponent', () => {
     spyOn(component.markAsDone, 'emit');
     const checkbox = debugEl.query(By.css('.checkbox'));
 
+    // With fixture.debugElement we can trigger mocked events
     checkbox.triggerEventHandler('click', null);
 
     expect(component.markAsDone.emit).toHaveBeenCalledWith(1);

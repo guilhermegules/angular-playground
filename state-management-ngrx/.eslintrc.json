@@ -28,6 +28,8 @@
     "class-methods-use-this": "off",
     "no-undef": "off",
     "no-confusing-arrow": "off",
-    "no-param-reassign": "off"
+    "no-param-reassign": "off",
+    "import/no-extraneous-dependencies": "off",
+    "no-use-before-define": "off"
   }
 }

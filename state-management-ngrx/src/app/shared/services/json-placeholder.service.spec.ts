@@ -9,9 +9,7 @@ describe('HttpClient testing', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-      ],
+      imports: [HttpClientTestingModule],
     });
 
     httpTestingController = TestBed.inject(HttpTestingController);
@@ -23,14 +21,13 @@ describe('HttpClient testing', () => {
   });
 
   it('should get entities', done => {
-    service.getTodosByUser(1)
-      .subscribe(response => {
-        expect(testingRequest.request.params.get('userId')).toBe('1');
-        expect(testingRequest.request.method).toBe('GET');
-        expect(response).toEqual([1, 2]);
-        done();
-      });
-    
+    service.getTodosByUser(1).subscribe(response => {
+      expect(testingRequest.request.params.get('userId')).toBe('1');
+      expect(testingRequest.request.method).toBe('GET');
+      expect(response).toEqual([1, 2]);
+      done();
+    });
+
     const testingRequest = httpTestingController.expectOne(req => req.url.includes('todos'));
     testingRequest.flush([1, 2]);
   });
