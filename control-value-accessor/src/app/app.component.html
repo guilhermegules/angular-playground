@@ -1,0 +1,8 @@
+<h3>Parent form value: {{ search }}</h3>
+<span *ngIf="isSearchTouched">Touched</span>
+
+<hr />
+
+<form [formGroup]="form">
+  <app-typeahead formControlName="search"></app-typeahead>
+</form>

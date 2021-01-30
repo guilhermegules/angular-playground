@@ -1,0 +1,7 @@
+<input [formControl]="control" (focus)="onFocus()" />
+
+<ul>
+  <li *ngFor="let state of filteredStates" (click)="onSelect(state)">
+    {{ state }}
+  </li>
+</ul>
