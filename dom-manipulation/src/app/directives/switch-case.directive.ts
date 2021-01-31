@@ -14,6 +14,7 @@ import { SwitchDirective } from './switch.directive';
 export class SwitchCaseDirective implements DoCheck {
   @Input('appSwitchCase') caseValue: any;
 
+  // @Host() annotations tells to angular for search for dependency on father of this Directive
   constructor(
     @Host() private appSwitch: SwitchDirective,
     private viewContainerRef: ViewContainerRef,
