@@ -1,0 +1,5 @@
+<ng-container *ngFor="let item of list">
+  <ng-container
+    *ngTemplateOutlet="info; context: { $implicit: item, func: func }"
+  ></ng-container>
+</ng-container>

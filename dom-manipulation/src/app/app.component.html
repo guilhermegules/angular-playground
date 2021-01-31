@@ -1,0 +1,44 @@
+<div>
+  <h3>ngIf Implementation</h3>
+
+  <div *appIf="flag">Test</div>
+
+  <button (click)="onClick()">Click</button>
+</div>
+
+<hr />
+
+<div>
+  <h3>ng-template and ng-container usage with child component</h3>
+  <!-- ng-template context -->
+
+  <app-child [info]="template" [list]="list"></app-child>
+
+  <!-- let variable example with explicit or implicit declaration -->
+  <ng-template let-item let-function="func" #template>
+    <div (click)="function(item)">{{ item }}</div>
+  </ng-template>
+</div>
+
+<hr />
+
+<div>
+  <h3>ngFor Implementation</h3>
+
+  <div *appFor="let item; from: list; let index = index">
+    {{ item }} {{ index }}
+  </div>
+</div>
+
+<hr />
+
+<div>
+  <h3>ngSwitch Implementation</h3>
+
+  <div [appSwitch]="value">
+    <div *appSwitchCase="'A'">AAA</div>
+    <div *appSwitchCase="'B'">BBB</div>
+  </div>
+
+  <button (click)="toggle()">Toggle</button>
+</div>
