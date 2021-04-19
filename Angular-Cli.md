@@ -51,7 +51,8 @@ End-to-end `ng e2e`.
 - `npx -p @angular/cli ng new <project_name>`
 
 ### Creating routing module:
-- `ng g m <module_name> --routing`
+- `ng g m <module_name> --routing`,
+- `ng g m <module_name> --route <module_route_name> --module <module_for_being_lazy_loaded>`
 
 ### Disable analytics
 - `ng analytics off`
