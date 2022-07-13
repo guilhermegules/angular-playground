@@ -1,0 +1,213 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <div class="col-sm-12">
+      <label for="name" class="control-label">Name</label>
+    </div>
+    <div class="col-sm-12">
+      <input
+        type="text"
+        class="form-control"
+        formControlName="name"
+        id="name"
+        [ngClass]="applyError('name')"
+      />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-12">
+      <label for="email" class="control-label">Email</label>
+    </div>
+    <div class="col-sm-12">
+      <input
+        type="email"
+        class="form-control"
+        formControlName="email"
+        id="email"
+        placeholder="name@email.com"
+        [ngClass]="applyError('email')"
+      />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-12">
+      <label for="confirmEmail" class="control-label">Confirmar Email</label>
+    </div>
+    <div class="col-sm-12">
+      <input
+        type="confirmEmail"
+        class="form-control"
+        formControlName="confirmEmail"
+        id="confirmEmail"
+        placeholder="nome@email.com"
+        [ngClass]="applyError('confirmEmail')"
+      />
+    </div>
+  </div>
+
+  <div formGroupName="address">
+    <div class="form-group">
+      <div class="col-md-3">
+        <label for="cep" class="control-label">CEP</label>
+        <input
+          type="text"
+          class="form-control"
+          id="cep"
+          formControlName="cep"
+          [ngClass]="applyError('address.cep')"
+        />
+      </div>
+
+      <div class="col-md-3">
+        <label for="number" class="control-label">Number</label>
+        <input
+          type="text"
+          class="form-control"
+          id="number"
+          formControlName="number"
+          [ngClass]="applyError('address.number')"
+        />
+      </div>
+
+      <div class="col-md-6">
+        <label for="complement" class="control-label">Complement</label>
+        <input
+          type="text"
+          class="form-control"
+          id="complement"
+          formControlName="complement"
+          [ngClass]="applyError('address.complement')"
+        />
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-12">
+        <label for="street" class="control-label">Street</label>
+      </div>
+      <div class="col-sm-12">
+        <input
+          type="text"
+          class="form-control"
+          id="street"
+          formControlName="street"
+          [ngClass]="applyError('address.street')"
+        />
+      </div>
+      <div class="form-group">
+        <div class="col-md-5">
+          <label for="neighborhood" class="control-label">Neighborhood</label>
+          <input
+            type="text"
+            class="form-control"
+            id="neighborhood"
+            formControlName="neighborhood"
+            [ngClass]="applyError('address.neighborhood')"
+          />
+        </div>
+        <div class="col-md-4">
+          <label for="city" class="control-label">City</label>
+          <select class="form-control" id="city" formControlName="city">
+            <option *ngFor="let city of cities" [value]="city.name">
+              {{ city.name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="col-md-3">
+          <label for="state" class="control-label">State</label>
+          <select class="form-control" id="state" formControlName="state">
+            <option *ngFor="let state of states" [value]="state.initials">
+              {{ state.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-md-4">
+      <label for="position" class="control-label">Position</label>
+      <select class="form-control" id="position" formControlName="position">
+        <option *ngFor="let position of positions" [ngValue]="position">
+          {{ position.description }}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-md-4">
+      <label for="technologies" class="control-label">Technologies</label>
+      <select
+        multiple
+        class="form-control"
+        id="technologies"
+        formControlName="technologies"
+      >
+        <option
+          *ngFor="let technology of technologies"
+          [value]="technology.name"
+        >
+          {{ technology.description }}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-md-3">
+      <label for="newsletter" class="control-label">Newsletter</label>
+      <div id="newsletter" class="row">
+        <div class="col-sm-4" *ngFor="let option of newsletterOptions">
+          <label class="radio-inline">
+            <input
+              type="radio"
+              [value]="option.value"
+              formControlName="newsletter"
+            />
+            {{ option.description }}
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-3">
+        <div class="checkbox">
+          <label class="checkbox-inline">
+            <input
+              type="checkbox"
+              formControlName="terms"
+              [ngClass]="applyError('terms')"
+            />
+            Accept the terms.
+          </label>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <label for="frameworks">Frameworks</label>
+        <div id="frameworks" class="row">
+          <div
+            class="checkbox"
+            class="col-sm-5"
+            formArrayName="frameworks"
+            *ngFor="let item of frameworksControls; let i = index"
+          >
+            <label class="checkbox-inline">
+              <input type="checkbox" [formControlName]="i" />
+              {{ frameworks[i] }}
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="buttons-container">
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button class="btn btn-warning">Clear</button>
+    <button class="btn btn-info">Position</button>
+    <button class="btn btn-info">Technologies</button>
+  </div>
+</form>
+
+<app-debug-form [form]="form"></app-debug-form>
