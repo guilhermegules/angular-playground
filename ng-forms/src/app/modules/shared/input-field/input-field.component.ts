@@ -1,11 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component, forwardRef, Input, OnInit } from '@angular/core';
+import { Component, forwardRef, Input } from '@angular/core';
 import {
   ControlValueAccessor,
   FormsModule,
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from '@angular/forms';
+
+type InputFieldCallback = (value: string) => void;
 
 @Component({
   selector: 'app-input-field',
@@ -33,31 +35,31 @@ export class InputFieldComponent implements ControlValueAccessor {
   @Input()
   public isReadOnly = false;
 
-  private innerValue: any;
+  private innerValue = '';
 
   get value() {
     return this.innerValue;
   }
 
-  set value(value: any) {
+  set value(value: string) {
     if (value === this.innerValue) return;
 
     this.innerValue = value;
     this.onChangeCb(value);
   }
 
-  public onChangeCb: (_: any) => void = () => {};
-  public onTouchedCb: (_: any) => void = () => {};
+  public onChangeCb: InputFieldCallback = () => {};
+  public onTouchedCb: InputFieldCallback = () => {};
 
-  public writeValue(value: any): void {
+  public writeValue(value: string): void {
     this.value = value;
   }
 
-  public registerOnChange(fn: any): void {
+  public registerOnChange(fn: InputFieldCallback): void {
     this.onChangeCb = fn;
   }
 
-  public registerOnTouched(fn: any): void {
+  public registerOnTouched(fn: InputFieldCallback): void {
     this.onTouchedCb = fn;
   }
 
