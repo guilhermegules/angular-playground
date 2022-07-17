@@ -6,6 +6,7 @@ import { ReactiveFormRoutingModule } from './reactive-form-routing.module';
 import { ReactiveFormComponent } from './components/reactive-form.component';
 
 import { DebugFormModule } from '@modules/shared/debug-form/debug-form.module';
+import { InputFieldComponent } from '@modules/shared/input-field/input-field.component';
 
 @NgModule({
   declarations: [ReactiveFormComponent],
@@ -15,6 +16,7 @@ import { DebugFormModule } from '@modules/shared/debug-form/debug-form.module';
     ReactiveFormsModule,
     DebugFormModule,
     FormsModule,
+    InputFieldComponent,
   ],
 })
 export class ReactiveFormModule {}

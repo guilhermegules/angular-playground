@@ -3,13 +3,12 @@ import {
   FormBuilder,
   FormControl,
   Validators,
-  FormGroup,
   FormArray,
 } from '@angular/forms';
 import { CepService } from '@core/services/cep.service';
 import { EmailValidationService } from '@core/services/email-validation.service';
+import { BaseFormAbstract } from '@core/utils/base-form-abstract';
 
-import { BaseFormComponent } from '@core/utils/base-form.component';
 import { FormValidators } from '@core/validators/form.validators';
 import {
   distinctUntilChanged,
@@ -23,7 +22,7 @@ import {
 } from 'rxjs';
 import { City } from '../models/city.model';
 import { Newsletter } from '../models/newsletter.model';
-import { Position } from '../models/positions.model';
+import { Position, PositionLevelEnum } from '../models/positions.model';
 import { State } from '../models/state.mode';
 import { Technologies } from '../models/technologies.model';
 import { ApiService } from '../services/api.service';
@@ -34,7 +33,7 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./reactive-form.component.scss'],
 })
 export class ReactiveFormComponent
-  extends BaseFormComponent
+  extends BaseFormAbstract
   implements OnInit, OnDestroy
 {
   public states: State[] = [];
@@ -121,7 +120,20 @@ export class ReactiveFormComponent
     this.destroyed$.complete();
   }
 
-  public initForm(): void {
+  public setPosition() {
+    const position: Position = {
+      name: 'Dev',
+      level: PositionLevelEnum.MID_LEVEL,
+      description: 'Dev Pl',
+    };
+    this.form.get('position')?.setValue(position);
+  }
+
+  public setTechnologies() {
+    this.form.get('technologies')?.setValue(['typeScript', 'rxjs', 'angular']);
+  }
+
+  private initForm(): void {
     this.form = this.fb.group({
       name: [
         null,
@@ -134,7 +146,7 @@ export class ReactiveFormComponent
       email: [
         null,
         [Validators.required, Validators.email],
-        [this.validateEmail.bind(this)],
+        [this.validateEmail()],
       ],
       confirmEmail: [null, FormValidators.equalsTo('email')],
       address: this.fb.group({
@@ -159,10 +171,11 @@ export class ReactiveFormComponent
     return this.fb.array(controls);
   }
 
-  private validateEmail(formControl: FormControl) {
-    return this.emailValidation
-      .getEmailValidity(formControl.value)
-      .pipe(map((hasEmail) => (hasEmail ? { invalidEmail: true } : null)));
+  private validateEmail() {
+    return (formControl: FormControl) =>
+      this.emailValidation
+        .getEmailValidity(formControl.value)
+        .pipe(map((hasEmail) => (hasEmail ? { invalidEmail: true } : null)));
   }
 
   private fillAddressFields(data: any) {

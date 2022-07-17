@@ -1,18 +1,11 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <div class="col-sm-12">
-      <label for="name" class="control-label">Name</label>
-    </div>
-    <div class="col-sm-12">
-      <input
-        type="text"
-        class="form-control"
-        formControlName="name"
-        id="name"
-        [ngClass]="applyError('name')"
-      />
-    </div>
-  </div>
+  <app-input-field
+    class="col-sm-12"
+    [cssClass]="applyError('name')"
+    id="name"
+    label="Name"
+    formControlName="name"
+  ></app-input-field>
 
   <div class="form-group">
     <div class="col-sm-12">
@@ -203,10 +196,16 @@
   </div>
 
   <div class="buttons-container">
-    <button type="submit" class="btn btn-primary">Submit</button>
-    <button class="btn btn-warning">Clear</button>
-    <button class="btn btn-info">Position</button>
-    <button class="btn btn-info">Technologies</button>
+    <button class="btn btn-primary">Submit</button>
+    <button class="btn btn-warning" type="reset" (click)="form.reset()">
+      Clear
+    </button>
+    <button class="btn btn-info" type="button" (click)="setPosition()">
+      Position
+    </button>
+    <button class="btn btn-info" type="button" (click)="setTechnologies()">
+      Technologies
+    </button>
   </div>
 </form>
 
