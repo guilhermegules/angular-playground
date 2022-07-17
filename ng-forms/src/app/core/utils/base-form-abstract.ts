@@ -1,6 +1,6 @@
-import { FormArray, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 
-export abstract class BaseFormComponent {
+export abstract class BaseFormAbstract {
   public form!: FormGroup;
 
   public abstract submit(): void;
