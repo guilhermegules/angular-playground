@@ -7,9 +7,10 @@ import { ReactiveFormComponent } from './components/reactive-form.component';
 
 import { DebugFormModule } from '@modules/shared/debug-form/debug-form.module';
 import { InputFieldComponent } from '@modules/shared/input-field/input-field.component';
+import { FormContainerComponent } from './containers/form-container/form-container.component';
 
 @NgModule({
-  declarations: [ReactiveFormComponent],
+  declarations: [ReactiveFormComponent, FormContainerComponent],
   imports: [
     CommonModule,
     ReactiveFormRoutingModule,

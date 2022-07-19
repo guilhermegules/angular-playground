@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ReactiveFormComponent } from './components/reactive-form.component';
+import { FormContainerComponent } from './containers/form-container/form-container.component';
 
-const routes: Routes = [{ path: '', component: ReactiveFormComponent }];
+const routes: Routes = [{ path: '', component: FormContainerComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
