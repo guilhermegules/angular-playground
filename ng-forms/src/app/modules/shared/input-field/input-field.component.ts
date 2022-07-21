@@ -1,11 +1,14 @@
+import { ErrorMsgComponent } from './../error-msg/error-msg.component';
 import { CommonModule } from '@angular/common';
-import { Component, forwardRef, Input } from '@angular/core';
+import { Component, forwardRef, Input, OnDestroy, OnInit } from '@angular/core';
 import {
   ControlValueAccessor,
+  FormControl,
   FormsModule,
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { Subject, takeUntil } from 'rxjs';
 
 type InputFieldCallback = (value: string) => void;
 
@@ -21,38 +24,41 @@ type InputFieldCallback = (value: string) => void;
       multi: true,
     },
   ],
-  imports: [ReactiveFormsModule, CommonModule, FormsModule],
+  imports: [ReactiveFormsModule, CommonModule, FormsModule, ErrorMsgComponent],
 })
 export class InputFieldComponent implements ControlValueAccessor {
   @Input()
-  public cssClass: Record<string, boolean> = {};
+  set cssClass(className: Record<string, boolean>) {
+    this.className = className;
+  }
+
   @Input()
   public id!: string;
+
   @Input()
   public label = '';
+
   @Input()
   public type = 'text';
+
+  @Input()
+  public placeholder = '';
+
   @Input()
   public isReadOnly = false;
 
-  private innerValue = '';
+  @Input()
+  public control!: FormControl;
 
-  get value() {
-    return this.innerValue;
-  }
-
-  set value(value: string) {
-    if (value === this.innerValue) return;
-
-    this.innerValue = value;
-    this.onChangeCb(value);
-  }
+  public className: Record<string, boolean> = {};
 
   public onChangeCb: InputFieldCallback = () => {};
   public onTouchedCb: InputFieldCallback = () => {};
 
   public writeValue(value: string): void {
-    this.value = value;
+    if (!this.control) return;
+
+    this.control.setValue(value);
   }
 
   public registerOnChange(fn: InputFieldCallback): void {
