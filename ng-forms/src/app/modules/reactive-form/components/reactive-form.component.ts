@@ -120,6 +120,10 @@ export class ReactiveFormComponent
     this.destroyed$.complete();
   }
 
+  public getFormControlByName(controlName: string) {
+    return this.form.get(controlName)! as FormControl;
+  }
+
   public setPosition() {
     const position: Position = {
       name: 'Dev',

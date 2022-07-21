@@ -1,103 +1,88 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <app-input-field
-    class="col-sm-12"
-    [cssClass]="applyError('name')"
-    id="name"
-    label="Name"
-    formControlName="name"
-  ></app-input-field>
-
-  <div class="form-group">
-    <div class="col-sm-12">
-      <label for="email" class="control-label">Email</label>
-    </div>
-    <div class="col-sm-12">
-      <input
-        type="email"
-        class="form-control"
-        formControlName="email"
-        id="email"
-        placeholder="name@email.com"
-        [ngClass]="applyError('email')"
-      />
-    </div>
+  <div class="row">
+    <app-input-field
+      class="col-sm-12"
+      id="name"
+      label="Name"
+      formControlName="name"
+      [cssClass]="applyError('name')"
+      [control]="getFormControlByName('name')"
+    ></app-input-field>
   </div>
 
-  <div class="form-group">
-    <div class="col-sm-12">
-      <label for="confirmEmail" class="control-label">Confirmar Email</label>
-    </div>
-    <div class="col-sm-12">
-      <input
-        type="confirmEmail"
-        class="form-control"
-        formControlName="confirmEmail"
-        id="confirmEmail"
-        placeholder="nome@email.com"
-        [ngClass]="applyError('confirmEmail')"
-      />
-    </div>
+  <div class="row">
+    <app-input-field
+      class="col-sm-12"
+      id="email"
+      label="Email"
+      formControlName="email"
+      placeholder="name@email.com"
+      [cssClass]="applyError('email')"
+      [control]="getFormControlByName('email')"
+    ></app-input-field>
+  </div>
+
+  <div class="row">
+    <app-input-field
+      class="col-sm-12"
+      id="confirmEmail"
+      label="Confirm email"
+      formControlName="confirmEmail"
+      placeholder="name@email.com"
+      [cssClass]="applyError('confirmEmail')"
+      [control]="getFormControlByName('confirmEmail')"
+    ></app-input-field>
   </div>
 
   <div formGroupName="address">
-    <div class="form-group">
-      <div class="col-md-3">
-        <label for="cep" class="control-label">CEP</label>
-        <input
-          type="text"
-          class="form-control"
-          id="cep"
-          formControlName="cep"
-          [ngClass]="applyError('address.cep')"
-        />
-      </div>
+    <div class="form-group row">
+      <app-input-field
+        class="col-md-3"
+        id="cep"
+        label="CEP"
+        formControlName="cep"
+        [cssClass]="applyError('address.cep')"
+        [control]="getFormControlByName('address.cep')"
+      ></app-input-field>
 
-      <div class="col-md-3">
-        <label for="number" class="control-label">Number</label>
-        <input
-          type="text"
-          class="form-control"
-          id="number"
-          formControlName="number"
-          [ngClass]="applyError('address.number')"
-        />
-      </div>
+      <app-input-field
+        class="col-md-3"
+        id="number"
+        label="Number"
+        formControlName="number"
+        [cssClass]="applyError('address.number')"
+        [control]="getFormControlByName('address.number')"
+      ></app-input-field>
 
-      <div class="col-md-6">
-        <label for="complement" class="control-label">Complement</label>
-        <input
-          type="text"
-          class="form-control"
-          id="complement"
-          formControlName="complement"
-          [ngClass]="applyError('address.complement')"
-        />
-      </div>
+      <app-input-field
+        class="col-md-3"
+        id="complement"
+        label="Complement"
+        formControlName="complement"
+        [cssClass]="applyError('address.complement')"
+        [control]="getFormControlByName('address.complement')"
+      ></app-input-field>
     </div>
-    <div class="form-group">
-      <div class="col-sm-12">
-        <label for="street" class="control-label">Street</label>
-      </div>
-      <div class="col-sm-12">
-        <input
-          type="text"
-          class="form-control"
-          id="street"
-          formControlName="street"
-          [ngClass]="applyError('address.street')"
-        />
-      </div>
+    <div class="form-group row">
+      <app-input-field
+        class="col-sm-12"
+        id="street"
+        label="Street"
+        formControlName="street"
+        [cssClass]="applyError('address.street')"
+        [control]="getFormControlByName('address.street')"
+      ></app-input-field>
+
+      <app-input-field
+        class="col-md-5"
+        id="neighborhood"
+        label="Neighborhood"
+        formControlName="neighborhood"
+        [cssClass]="applyError('address.neighborhood')"
+        [control]="getFormControlByName('address.neighborhood')"
+      ></app-input-field>
+
       <div class="form-group">
-        <div class="col-md-5">
-          <label for="neighborhood" class="control-label">Neighborhood</label>
-          <input
-            type="text"
-            class="form-control"
-            id="neighborhood"
-            formControlName="neighborhood"
-            [ngClass]="applyError('address.neighborhood')"
-          />
-        </div>
         <div class="col-md-4">
           <label for="city" class="control-label">City</label>
           <select class="form-control" id="city" formControlName="city">
