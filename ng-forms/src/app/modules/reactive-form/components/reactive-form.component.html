@@ -1,0 +1,197 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <app-input-field
+      class="col-sm-12"
+      id="name"
+      label="Name"
+      formControlName="name"
+      [cssClass]="applyError('name')"
+      [control]="getFormControlByName('name')"
+    ></app-input-field>
+  </div>
+
+  <div class="row">
+    <app-input-field
+      class="col-sm-12"
+      id="email"
+      label="Email"
+      formControlName="email"
+      placeholder="name@email.com"
+      [cssClass]="applyError('email')"
+      [control]="getFormControlByName('email')"
+    ></app-input-field>
+  </div>
+
+  <div class="row">
+    <app-input-field
+      class="col-sm-12"
+      id="confirmEmail"
+      label="Confirm email"
+      formControlName="confirmEmail"
+      placeholder="name@email.com"
+      [cssClass]="applyError('confirmEmail')"
+      [control]="getFormControlByName('confirmEmail')"
+    ></app-input-field>
+  </div>
+
+  <div formGroupName="address">
+    <div class="form-group row">
+      <app-input-field
+        class="col-md-3"
+        id="cep"
+        label="CEP"
+        formControlName="cep"
+        [cssClass]="applyError('address.cep')"
+        [control]="getFormControlByName('address.cep')"
+      ></app-input-field>
+
+      <app-input-field
+        class="col-md-3"
+        id="number"
+        label="Number"
+        formControlName="number"
+        [cssClass]="applyError('address.number')"
+        [control]="getFormControlByName('address.number')"
+      ></app-input-field>
+
+      <app-input-field
+        class="col-md-3"
+        id="complement"
+        label="Complement"
+        formControlName="complement"
+        [cssClass]="applyError('address.complement')"
+        [control]="getFormControlByName('address.complement')"
+      ></app-input-field>
+    </div>
+    <div class="form-group row">
+      <app-input-field
+        class="col-sm-12"
+        id="street"
+        label="Street"
+        formControlName="street"
+        [cssClass]="applyError('address.street')"
+        [control]="getFormControlByName('address.street')"
+      ></app-input-field>
+
+      <app-input-field
+        class="col-md-5"
+        id="neighborhood"
+        label="Neighborhood"
+        formControlName="neighborhood"
+        [cssClass]="applyError('address.neighborhood')"
+        [control]="getFormControlByName('address.neighborhood')"
+      ></app-input-field>
+
+      <div class="form-group">
+        <div class="col-md-4">
+          <label for="city" class="control-label">City</label>
+          <select class="form-control" id="city" formControlName="city">
+            <option *ngFor="let city of cities" [value]="city.name">
+              {{ city.name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="col-md-3">
+          <label for="state" class="control-label">State</label>
+          <select class="form-control" id="state" formControlName="state">
+            <option *ngFor="let state of states" [value]="state.initials">
+              {{ state.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-md-4">
+      <label for="position" class="control-label">Position</label>
+      <select class="form-control" id="position" formControlName="position">
+        <option *ngFor="let position of positions" [ngValue]="position">
+          {{ position.description }}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-md-4">
+      <label for="technologies" class="control-label">Technologies</label>
+      <select
+        multiple
+        class="form-control"
+        id="technologies"
+        formControlName="technologies"
+      >
+        <option
+          *ngFor="let technology of technologies"
+          [value]="technology.name"
+        >
+          {{ technology.description }}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-md-3">
+      <label for="newsletter" class="control-label">Newsletter</label>
+      <div id="newsletter" class="row">
+        <div class="col-sm-4" *ngFor="let option of newsletterOptions">
+          <label class="radio-inline">
+            <input
+              type="radio"
+              [value]="option.value"
+              formControlName="newsletter"
+            />
+            {{ option.description }}
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-3">
+        <div class="checkbox">
+          <label class="checkbox-inline">
+            <input
+              type="checkbox"
+              formControlName="terms"
+              [ngClass]="applyError('terms')"
+            />
+            Accept the terms.
+          </label>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <label for="frameworks">Frameworks</label>
+        <div id="frameworks" class="row">
+          <div
+            class="checkbox"
+            class="col-sm-5"
+            formArrayName="frameworks"
+            *ngFor="let item of frameworksControls; let i = index"
+          >
+            <label class="checkbox-inline">
+              <input type="checkbox" [formControlName]="i" />
+              {{ frameworks[i] }}
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="buttons-container">
+    <button class="btn btn-primary">Submit</button>
+    <button class="btn btn-warning" type="reset" (click)="form.reset()">
+      Clear
+    </button>
+    <button class="btn btn-info" type="button" (click)="setPosition()">
+      Position
+    </button>
+    <button class="btn btn-info" type="button" (click)="setTechnologies()">
+      Technologies
+    </button>
+  </div>
+</form>
+
+<app-debug-form [form]="form"></app-debug-form>

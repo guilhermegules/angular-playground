@@ -1,0 +1,13 @@
+@use "form-validations";
+
+:host {
+  form {
+    width: 100%;
+  }
+
+  .buttons-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+  }
+}
