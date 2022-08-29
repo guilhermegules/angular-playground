@@ -1,5 +1,4 @@
 import express from "express";
-import cors from "cors";
 import bodyParser from "body-parser";
 import multipart from "connect-multiparty";
 
@@ -8,14 +7,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const corsOptions = {
-  origin: "*",
-  optionsSuccessStatus: 200,
-};
-
-app.use(cors(corsOptions));
-
-const multipartMiddleware = multipart({ uploadDir: "../uploads" });
+const multipartMiddleware = multipart({ uploadDir: "./uploads" });
 
 app.post("/upload", multipartMiddleware, (req, res) => {
   const files = req.files;

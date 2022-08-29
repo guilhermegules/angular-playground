@@ -1,19 +1,28 @@
-import { Component } from '@angular/core';
+import { FileService } from './services/file.service';
+import { Component, OnDestroy } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-upload-file',
   templateUrl: './upload-file.component.html',
   styleUrls: ['./upload-file.component.scss'],
 })
-export class UploadFileComponent {
+export class UploadFileComponent implements OnDestroy {
   public files = new Set<File>();
   public filenames: string[] = [];
   public progress = 0;
 
-  constructor() {}
+  private destroyed$ = new Subject<void>();
+
+  constructor(private fileService: FileService) {}
 
   get filenamesFormatted(): string {
     return this.filenames.join(', ');
+  }
+
+  public ngOnDestroy(): void {
+    this.destroyed$.next();
+    this.destroyed$.complete();
   }
 
   public onChange(event: Event): void {
@@ -28,7 +37,14 @@ export class UploadFileComponent {
   }
 
   public onUpload(): void {
-    // TODO: Implement
+    if (this.files.size === 0) return;
+
+    this.fileService
+      .upload(this.files)
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe((response) => {
+        console.log('Response', response);
+      });
   }
 
   public onDownloadExcel(): void {
