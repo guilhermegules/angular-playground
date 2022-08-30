@@ -1,10 +1,10 @@
-import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
 import { pipe } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
-export default function filterResponse<T = any>() {
+export default function filterResponse<T = Object>() {
   return pipe(
-    filter(({ type }: HttpResponse<T>) => type === HttpEventType.Response),
-    map(({ body }: HttpResponse<T>) => body)
+    filter(({ type }: HttpEvent<T>) => type === HttpEventType.Response),
+    map((event: HttpEvent<T>) => (event as HttpResponse<T>).body)
   );
 }

@@ -1,6 +1,9 @@
 import { FileService } from './services/file.service';
 import { Component, OnDestroy } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
+import { HttpEvent, HttpEventType } from '@angular/common/http';
+import { uploadProgress } from '@shared/operators/upload-progress';
+import filterResponse from '@shared/operators/filter-response';
 
 @Component({
   selector: 'app-upload-file',
@@ -41,9 +44,15 @@ export class UploadFileComponent implements OnDestroy {
 
     this.fileService
       .upload(this.files)
-      .pipe(takeUntil(this.destroyed$))
-      .subscribe((response) => {
-        console.log('Response', response);
+      .pipe(
+        uploadProgress((progress) => {
+          this.progress = progress;
+        }),
+        filterResponse(),
+        takeUntil(this.destroyed$)
+      )
+      .subscribe(() => {
+        alert('Uploaded with success');
       });
   }
 
