@@ -1,4 +1,4 @@
-import { HttpClient, HttpEvent } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -22,15 +22,12 @@ export class FileService {
     });
   }
 
-  public downloadExcel(): Observable<Blob> {
-    return this.http.get(`${environment.BASE_URL}/download/excel`, {
-      responseType: 'blob',
-    });
-  }
+  public download(filename: string): Observable<Blob> {
+    const params = new HttpParams().set('filename', filename);
 
-  public downloadPdf(): Observable<Blob> {
-    return this.http.get(`${environment.BASE_URL}/download/pdf`, {
+    return this.http.get(`${environment.BASE_URL}/download`, {
       responseType: 'blob',
+      params,
     });
   }
 

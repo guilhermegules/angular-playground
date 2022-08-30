@@ -56,18 +56,19 @@ export class UploadFileComponent implements OnDestroy {
       });
   }
 
-  public onDownloadExcel(): void {
-    // TODO: Implement
+  public onDownload(): void {
+    this.fileService.download(this.filenames[0]).subscribe((response) => {
+      this.handleFileEvent(response);
+    });
   }
 
-  public onDownloadPDF(): void {
-    // TODO: Implement
-  }
-
-  public handleFileEvent(fileUrl: string, filename: string) {
+  public handleFileEvent(blobValue: Blob) {
+    const blob = new Blob([blobValue], { type: blobValue.type });
+    const file = new File([blob], this.filenames[0]);
+    const fileUrl = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = fileUrl;
-    link.download = filename;
+    link.download = `${file.name}.${file.type}`;
 
     link.dispatchEvent(
       new MouseEvent('click', {
@@ -77,9 +78,8 @@ export class UploadFileComponent implements OnDestroy {
       })
     );
 
-    // Firefox only
     setTimeout(() => {
-      window.URL.revokeObjectURL(fileUrl);
+      URL.revokeObjectURL(fileUrl);
       link.remove();
     }, 100);
   }
