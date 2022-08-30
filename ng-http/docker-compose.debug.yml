@@ -1,0 +1,8 @@
+version: "3.4"
+
+services:
+  ng-http:
+    image: ng-http
+    build: .
+    ports:
+      - 8081:80
