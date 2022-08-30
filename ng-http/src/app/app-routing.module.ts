@@ -9,6 +9,13 @@ const routes: Routes = [
         (m) => m.UploadFileModule
       ),
   },
+  {
+    path: 'reactive-search',
+    loadChildren: () =>
+      import('./modules/reactive-search/reactive-search.module').then(
+        (m) => m.ReactiveSearchModule
+      ),
+  },
 ];
 
 @NgModule({

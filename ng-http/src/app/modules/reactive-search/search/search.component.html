@@ -1,0 +1,30 @@
+<div class="container search-table">
+  <div class="search-box">
+    <input
+      type="text"
+      id="search"
+      class="form-control"
+      [formControl]="searchField"
+      placeholder="Search for libs"
+    />
+
+    <button class="btn btn-success" (click)="onSearch()">Search</button>
+  </div>
+  <div class="search-list">
+    <h3>{{ total }} Libs founded.</h3>
+    <table class="table table-bordered" id="libs-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Version</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let result of cdnList$ | async">
+          <td>{{ result.name }}</td>
+          <td>{{ result.latest }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
