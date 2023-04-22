@@ -1,0 +1,52 @@
+<section class="age-calculator">
+  <form [formGroup]="form" class="age-calculator__form">
+    <div
+      [ngClass]="{
+        'age-calculator__field--invalid': hasError('day')
+      }"
+    >
+      <label for="day">Day</label>
+      <input
+        class="age-calculator__field"
+        type="text"
+        formControlName="day"
+        id="day"
+      />
+      <p>{{ getErrorMessage(form.get("day")!.errors) }}</p>
+    </div>
+    <div [ngClass]="{ 'age-calculator__field--invalid': hasError('month') }">
+      <label for="month">Month</label>
+      <input
+        class="age-calculator__field"
+        type="text"
+        formControlName="month"
+        id="month"
+      />
+      <p>{{ getErrorMessage(form.get("month")!.errors) }}</p>
+    </div>
+    <div>
+      <label for="year">Year</label>
+      <input
+        class="age-calculator__field"
+        type="text"
+        formControlName="year"
+        id="year"
+      />
+    </div>
+  </form>
+
+  <p class="age-calculator__age">
+    <strong> {{ age() }}</strong>
+    Years
+  </p>
+
+  <p class="age-calculator__age">
+    <strong> {{ monthsAge() }}</strong>
+    Months
+  </p>
+
+  <p class="age-calculator__age">
+    <strong> {{ daysAge() }}</strong>
+    Days
+  </p>
+</section>
