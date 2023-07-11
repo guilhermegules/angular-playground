@@ -1,0 +1,14 @@
+:host {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+  background-color: grey;
+
+  header {
+    background-color: brown;
+    padding: 32px;
+    width: 100%;
+  }
+}
